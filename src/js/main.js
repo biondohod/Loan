@@ -1,12 +1,14 @@
 import MainSlider from './modules/slider/mainSlider';
 import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/videoPlayer';
+import Difference from './modules/difference';
 
 window.addEventListener('DOMContentLoaded', () => {
   const mainSlider = new MainSlider({
     containerSelector: '.page',
     btnsSelector: '.next',
     resetBtnsSelector: '.sidecontrol > a',
+    start: 2,
   });
   mainSlider.render();
   mainSlider.showTimeBlock('.hanson', 3, 3000);
@@ -39,4 +41,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const player = new VideoPlayer('.play', '.overlay');
   player.init();
+
+  const oldEducation = new Difference('.officerold .officer__card-item', '.officerold .card__click');
+  oldEducation.render();
+  const newEducation = new Difference('.officernew .officer__card-item', '.officernew .card__click');
+  newEducation.render();
 });
