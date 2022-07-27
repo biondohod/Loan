@@ -16,12 +16,12 @@ export default class Slider {
     this._resetBtn.forEach((btn) => {
       btn.addEventListener('click', () => {
         this._slides[this.slideIndex - 1].classList.remove('fadeInUp');
-        this._slides[this.slideIndex - 1].classList.add('fadeOutDown');
+        this._slides[this.slideIndex - 1].classList.add('slideOutDown');
         setTimeout(() => {
-          this._slides[this.slideIndex - 1].classList.remove('fadeOutDown');
+          this._slides[this.slideIndex - 1].classList.remove('slideOutDown');
           this.slideIndex = 1;
           this.showSlide();
-        }, 700);
+        }, 1000);
       });
     });
   }
@@ -29,6 +29,23 @@ export default class Slider {
   setAnimation() {
     this._slides.forEach((slide) => {
       slide.classList.add('animated', 'fadeInUp');
+    });
+  }
+
+  showTimeBlock(blockSelector, slideNum, time) {
+    const block = document.querySelector(blockSelector);
+    block.style.display = 'none';
+    this._nextBtns[slideNum - 2].addEventListener('click', () => {
+      setTimeout(() => {
+        block.style.display = 'block';
+        block.classList.add('animated', 'slideInUp');
+      }, time + 2000);
+    });
+    this._nextBtns[slideNum - 1].addEventListener('click', () => {
+      block.style.display = 'none';
+    });
+    this._nextBtns[slideNum - 3].addEventListener('click', () => {
+      block.style.display = 'none';
     });
   }
 
@@ -43,17 +60,17 @@ export default class Slider {
       slide.style.display = 'none';
     });
 
-    this._slides[this.slideIndex - 1].classList.remove('fadeOutUp');
-    this._slides[this.slideIndex - 1].classList.add('fadeInUp');
+    this._slides[this.slideIndex - 1].classList.remove('slideOutUp');
+    this._slides[this.slideIndex - 1].classList.add('slideInUp');
     this._slides[this.slideIndex - 1].style.display = 'block';
   }
 
   plusSlide() {
-    this._slides[this.slideIndex - 1].classList.remove('fadeInUp');
-    this._slides[this.slideIndex - 1].classList.add('fadeOutUp');
+    this._slides[this.slideIndex - 1].classList.remove('slideInUp');
+    this._slides[this.slideIndex - 1].classList.add('slideOutUp');
     setTimeout(() => {
       this.slideIndex++;
       this.showSlide();
-    }, 700);
+    }, 1000);
   }
 }
