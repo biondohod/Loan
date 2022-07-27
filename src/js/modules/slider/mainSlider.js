@@ -1,16 +1,12 @@
 import Slider from './slider';
 
-const ANIMATION_DURATION = 700;
-export default class MainSlider extends Slider {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(pageSelector, nextBtnSelector) {
-    super(pageSelector, nextBtnSelector);
-  }
+const ANIMATION_DURATION = 600;
 
+export default class MainSlider extends Slider {
   render() {
     this.setAnimation();
     this.showSlide();
-    this._nextBtns.forEach((btn) => {
+    this._btns.forEach((btn) => {
       btn.addEventListener('click', () => this.plusSlide());
     });
     this._resetBtn.forEach((btn) => {
@@ -37,16 +33,16 @@ export default class MainSlider extends Slider {
   showTimeBlock(blockSelector, slideNum, time) {
     const block = document.querySelector(blockSelector);
     block.style.display = 'none';
-    this._nextBtns[slideNum - 2].addEventListener('click', () => {
+    this._btns[slideNum - 2].addEventListener('click', () => {
       setTimeout(() => {
         block.style.display = 'block';
         block.classList.add('animated', 'slideInUp');
       }, time + (ANIMATION_DURATION * 2));
     });
-    this._nextBtns[slideNum - 1].addEventListener('click', () => {
+    this._btns[slideNum - 1].addEventListener('click', () => {
       block.style.display = 'none';
     });
-    this._nextBtns[slideNum - 3].addEventListener('click', () => {
+    this._btns[slideNum - 3].addEventListener('click', () => {
       block.style.display = 'none';
     });
   }

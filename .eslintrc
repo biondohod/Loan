@@ -10,7 +10,6 @@
     "no-plusplus": "off",
     "max-len": "off",
     "linebreak-style": "off",
-    "prefer-destructuring": "off",
-    "object-curly-newline": "off"
+    "prefer-destructuring": "off"
   }
 }
