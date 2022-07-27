@@ -26,6 +26,7 @@ export default class VideoPlayer {
   }
 
   renderPlayer(url) {
+    // eslint-disable-next-line no-undef
     this._player = new YT.Player('frame', {
       height: '100%',
       width: '100%',
