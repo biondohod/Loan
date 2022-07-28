@@ -1,9 +1,11 @@
 export default class VideoPlayer {
-  constructor(triggersSelector, overlaySelector) {
+  constructor(triggersSelector, overlaySelector, unactiveClass) {
     this._triggers = document.querySelectorAll(triggersSelector);
+    this._unactiveClass = unactiveClass;
     this._overlay = document.querySelector(overlaySelector);
     this._overlayClass = overlaySelector.slice(1);
     this._close = this._overlay.querySelector('.close');
+    this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
   }
 
   init() {
@@ -14,7 +16,12 @@ export default class VideoPlayer {
 
     this._triggers.forEach((trigger) => {
       const path = trigger.getAttribute('data-url');
-      trigger.addEventListener('click', () => this.openPlayer(path));
+      if (!trigger.querySelector('.play__circle').classList.contains(this._unactiveClass)) {
+        trigger.addEventListener('click', () => {
+          this.openPlayer(path);
+          this.activeBtn = trigger;
+        });
+      }
     });
     this._close.addEventListener('click', () => this.closePlayer());
 
@@ -32,8 +39,39 @@ export default class VideoPlayer {
       width: '100%',
       videoId: `${url}`,
       playerVars: { autoplay: 1 },
-
+      events: {
+        onStateChange: this.onPlayerStateChange,
+      },
     });
+  }
+
+  onPlayerStateChange(state) {
+    if (state.data === 0) {
+      try {
+        const unactiveElem = this.activeBtn.parentNode.nextElementSibling;
+        const unactiveBtnImg = unactiveElem.querySelector('.play__circle');
+        if (unactiveBtnImg.classList.contains('closed')) {
+          unactiveElem.style.filter = 'none';
+          unactiveElem.style.opacity = 1;
+
+          const btnImg = this.activeBtn.querySelector('svg').cloneNode(true);
+          unactiveBtnImg.classList.remove('closed');
+          unactiveBtnImg.querySelector('svg').remove();
+          unactiveBtnImg.append(btnImg);
+
+          const btnText = this.activeBtn.querySelector('.play__text').textContent;
+          const unactiveBtnText = unactiveElem.querySelector('.play__text');
+          unactiveBtnText.classList.remove('attention');
+          unactiveBtnText.textContent = btnText;
+
+          const unactiveBtn = unactiveElem.querySelector('.play');
+          unactiveBtn.addEventListener('click', () => {
+            const path = unactiveBtn.getAttribute('data-url');
+            this.openPlayer(path);
+          });
+        }
+      } catch (e) {}
+    }
   }
 
   openPlayer(url) {

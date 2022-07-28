@@ -12,9 +12,11 @@ export default class MainSlider extends Slider {
       });
       try {
         this._nextBtn.forEach((btn) => {
+          btn.style.cursor = 'pointer';
           btn.addEventListener('click', () => this.plusSlide());
         });
         this._prevBtn.forEach((btn) => {
+          btn.style.cursor = 'pointer';
           btn.addEventListener('click', () => this.minusSlide());
         });
       } catch (e) {}

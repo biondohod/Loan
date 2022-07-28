@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   feedSlider.render();
 
-  const player = new VideoPlayer('.play', '.overlay');
+  const player = new VideoPlayer('.play', '.overlay', 'closed');
   player.init();
 
   const oldEducation = new Difference('.officerold .officer__card-item', '.officerold .card__click');
