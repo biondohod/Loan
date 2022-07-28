@@ -3,23 +3,32 @@ import Slider from './slider';
 export default class MiniSlider extends Slider {
   bindTriggers() {
     if (this._container.querySelector('button')) {
-      this._nextBtn.addEventListener('click', () => {
-        this._container.insertBefore(this._slides[0], this._container.querySelector('button'));
-        this.decorateSlides();
+      this._nextBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this._container.insertBefore(this._slides[0], this._container.querySelector('button'));
+          this.decorateSlides();
+        });
       });
 
-      this._prevBtb.addEventListener('click', () => {
-        this._container.insertBefore(this._slides[this._slides.length - 3], this._slides[0]);
-        this.decorateSlides();
+      this._prevBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this._container.insertBefore(this._slides[this._slides.length - 3], this._slides[0]);
+          this.decorateSlides();
+        });
       });
     } else {
-      this._nextBtn.addEventListener('click', () => {
-        this._container.append(this._slides[0]);
-        this.decorateSlides();
+      this._nextBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this._container.append(this._slides[0]);
+          this.decorateSlides();
+        });
       });
-      this._prevBtb.addEventListener('click', () => {
-        this._container.insertBefore(this._slides[this._slides.length - 1], this._slides[0]);
-        this.decorateSlides();
+
+      this._prevBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this._container.insertBefore(this._slides[this._slides.length - 1], this._slides[0]);
+          this.decorateSlides();
+        });
       });
     }
   }

@@ -13,8 +13,8 @@ export default class Slider {
     this._container = document.querySelector(containerSelector);
     try { this._slides = this._container.children; } catch (e) {}
     this._btns = document.querySelectorAll(btnsSelector);
-    this._nextBtn = document.querySelector(nextBtnSelector);
-    this._prevBtb = document.querySelector(prevBtnSelector);
+    this._nextBtn = document.querySelectorAll(nextBtnSelector);
+    this._prevBtn = document.querySelectorAll(prevBtnSelector);
     this._resetBtn = document.querySelectorAll(resetBtnsSelector);
     this._activeClass = activeClass;
     this.animated = animated;

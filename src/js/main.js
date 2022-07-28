@@ -6,11 +6,11 @@ import Form from './modules/forms/form';
 import JoinForm from './modules/forms/joinForm';
 
 window.addEventListener('DOMContentLoaded', () => {
+  // index.html
   const mainSlider = new MainSlider({
     containerSelector: '.page',
     btnsSelector: '.next',
     resetBtnsSelector: '.sidecontrol > a',
-    start: 1,
   });
   mainSlider.render();
   mainSlider.showTimeBlock('.hanson', 3, 3000);
@@ -65,4 +65,14 @@ window.addEventListener('DOMContentLoaded', () => {
     emailInputSelector: '[name="email"]',
   });
   scheduleForm.init();
+
+  // modules.html
+  const mainModuleSlider = new MainSlider({
+    containerSelector: '.moduleapp',
+    btnsSelector: '.sidecontrol__controls .next',
+    nextBtnSelector: '.module__info-controls .next',
+    prevBtnSelector: '.module__info-controls .prev',
+    resetBtnsSelector: '.sidecontrol > a',
+  });
+  mainModuleSlider.render();
 });
