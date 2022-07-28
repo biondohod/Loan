@@ -22,9 +22,9 @@ export default class MainSlider extends Slider {
         btn.addEventListener('click', () => {
           if (this.slideIndex !== 1) {
             this._slides[this.slideIndex - 1].classList.remove('slideInUp');
-            this._slides[this.slideIndex - 1].classList.add('slideOutDown');
+            this._slides[this.slideIndex - 1].classList.add('rollOut');
             setTimeout(() => {
-              this._slides[this.slideIndex - 1].classList.remove('slideOutDown');
+              this._slides[this.slideIndex - 1].classList.remove('rollOut');
               this.slideIndex = 1;
               this.showSlide();
             }, ANIMATION_DURATION);
