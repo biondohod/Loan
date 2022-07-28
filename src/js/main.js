@@ -5,6 +5,7 @@ import Difference from './modules/difference';
 import Form from './modules/forms/form';
 import JoinForm from './modules/forms/joinForm';
 import ShowMoreInfo from './modules/showMoreInfo';
+import Download from './modules/download';
 
 window.addEventListener('DOMContentLoaded', () => {
   // index.html
@@ -79,4 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const showMoreInfo = new ShowMoreInfo('.module__info-show');
   showMoreInfo.bindTrigger();
+
+  const download = new Download('.download');
+  download.init();
 });
