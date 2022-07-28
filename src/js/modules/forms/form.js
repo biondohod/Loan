@@ -6,25 +6,27 @@ export default class Form {
     emailInputSelector = null,
     phoneInputSelector = null,
   }) {
-    this._form = document.querySelector(formSelector);
-    this._url = url;
-    this._emailInput = this._form.querySelector(emailInputSelector);
-    this._phoneInput = this._form.querySelector(phoneInputSelector);
-    this.messageColor = messageColor;
-    this.messages = {
-      loading: {
-        text: 'Отправка...',
-        image: 'assets/img/spinner.svg',
-      },
-      success: {
-        text: 'Спасибо! Скоро мы с вами свяжемся',
-        image: 'assets/img/success.png',
-      },
-      failure: {
-        text: 'Что-то пошло не так. Проверьте соединение с интернетом либо повторите попытку позднее',
-        image: 'assets/img/failure.png',
-      },
-    };
+    try {
+      this._form = document.querySelector(formSelector);
+      this._url = url;
+      this._emailInput = this._form.querySelector(emailInputSelector);
+      this._phoneInput = this._form.querySelector(phoneInputSelector);
+      this.messageColor = messageColor;
+      this.messages = {
+        loading: {
+          text: 'Отправка...',
+          image: 'assets/img/spinner.svg',
+        },
+        success: {
+          text: 'Спасибо! Скоро мы с вами свяжемся',
+          image: 'assets/img/success.png',
+        },
+        failure: {
+          text: 'Что-то пошло не так. Проверьте соединение с интернетом либо повторите попытку позднее',
+          image: 'assets/img/failure.png',
+        },
+      };
+    } catch (e) {}
   }
 
   createStatusMessage() {
@@ -123,8 +125,10 @@ export default class Form {
   }
 
   init() {
-    this.onSubmit();
-    this.createStatusMessage();
-    this.checkEmailInput();
+    try {
+      this.onSubmit();
+      this.createStatusMessage();
+      this.checkEmailInput();
+    } catch (e) {}
   }
 }

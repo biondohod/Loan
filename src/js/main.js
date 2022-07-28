@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     containerSelector: '.page',
     btnsSelector: '.next',
     resetBtnsSelector: '.sidecontrol > a',
-    start: 4,
+    start: 1,
   });
   mainSlider.render();
   mainSlider.showTimeBlock('.hanson', 3, 3000);

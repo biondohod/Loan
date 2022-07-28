@@ -40,13 +40,15 @@ export default class MiniSlider extends Slider {
   }
 
   render() {
-    this._container.style.cssText = `
+    try {
+      this._container.style.cssText = `
       display: flex;
       flex-wrap: wrap;
       overflow: hidden;
       align-items: flex-start;
-    `;
-    this.bindTriggers();
-    this.decorateSlides();
+      `;
+      this.bindTriggers();
+      this.decorateSlides();
+    } catch (e) {}
   }
 }

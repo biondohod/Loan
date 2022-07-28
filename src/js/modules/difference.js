@@ -24,12 +24,14 @@ export default class Difference {
   }
 
   render() {
-    this._cards.forEach((card, index) => {
-      if (index !== this._cardsCount) {
-        card.style.display = 'none';
-        card.classList.add('animated', 'flipInX');
-      }
-    });
-    this.bindTrigger();
+    try {
+      this._cards.forEach((card, index) => {
+        if (index !== this._cardsCount) {
+          card.style.display = 'none';
+          card.classList.add('animated', 'flipInX');
+        }
+      });
+      this.bindTrigger();
+    } catch (e) {}
   }
 }
